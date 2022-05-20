@@ -43,7 +43,7 @@ public class MoveBase : ScriptableObject
         get { return accurracy; }
     }
 
-    public int Pp
+    public int PP
     {
         get { return pp; }
     }

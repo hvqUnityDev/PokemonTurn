@@ -11,6 +11,6 @@ public class Move : MonoBehaviour
     public Move(MoveBase pBase)
     {
         Base = pBase;
-        PP = pBase.Pp;
+        PP = pBase.PP;
     }
 }
