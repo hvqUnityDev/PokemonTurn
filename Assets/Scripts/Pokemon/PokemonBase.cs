@@ -80,7 +80,16 @@ public class PokemonBase : ScriptableObject
     {
         get { return backSprite; }
     }
-
+    
+    public PokemonType Type1
+    {
+        get { return type1; }
+    }
+    
+    public PokemonType Type2
+    {
+        get { return type2; }
+    }
 }
 [System.Serializable]
 public class LearnableMove
@@ -119,3 +128,43 @@ public enum PokemonType
     Ghost,
     Dragon
 }
+
+public class TypeChart
+{
+    static float[][] chart =
+    {
+         
+        //          defence  NOR   FIR   WAT   ELE   GRA   ICE   FIG   POI
+        /*NOR*/ new float[] {1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f},
+        /*FIR*/ new float[] {1f,   0.5f, 0.5f, 1f,   2f,   2f,   1f,   1f},
+        /*WAT*/ new float[] {1f,   2f,   0.5f, 2f,   0.5f, 1f,   1f,   1f},
+        /*ELE*/ new float[] {1f,   1f,   2f,   0.5f, 0.5f, 2f,   1f,   1f},
+        /*GRA*/ new float[] {1f,   0.5f, 2f,   2f,   0.5f, 1f,   1f,   0.5f},
+        /*POI*/ new float[] {1f,   1f,   1f,   1f,   2f,   1f,   1f,   1f}
+    };
+    public static float GetEffectiveness(PokemonType attackeType, PokemonType defenceType)
+    {
+        if (attackeType == PokemonType.None || defenceType == PokemonType.None)
+        {
+            return 1;
+        }
+
+        int row = (int) attackeType - 1;
+        int col = (int) defenceType - 1;
+
+        return chart[row][col];
+    }
+}
+
+public class DamageDetails
+{
+    public bool Fainted { get; set; }
+    
+    public float Critical { get; set; }
+    
+    public float Type { get; set; }
+    
+    
+}
+
+
